@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Repository } from '../types'
+import type { Repository } from '@/types'
 
 defineProps<{
   repository: Repository

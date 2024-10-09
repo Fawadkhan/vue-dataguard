@@ -17,6 +17,13 @@
   </div>
   <div v-else class="bg-white w-100 md:h-100 p-4 rounded-lg shadow text-center text-gray-500">
     {{ githubStore.error ? githubStore.error : ' No repositories found, try changing the filters' }}
+    <img
+      src="../assets/no-results.jpg"
+      height="400"
+      width="400"
+      alt="No repositories found"
+      class="mx-auto mt-4"
+    />
   </div>
 </template>
 

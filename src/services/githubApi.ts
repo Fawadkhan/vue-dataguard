@@ -10,7 +10,9 @@ interface GithubApiResponse {
 
 export async function searchRepositories(filters: SearchFilters): Promise<GithubApiResponse> {
   const { languages, startDate, endDate, minStars } = filters
-  const query = `${languages.join(' OR ')} created:${startDate}..${endDate} stars:>=${minStars}`
+  console.log('filters', startDate)
+  const dateFilter = startDate && endDate && `created:${startDate}..${endDate}`
+  const query = `${languages.join(' OR ')}${dateFilter}stars:>=${minStars}`
   const url = `${BASE_URL}?q=${encodeURIComponent(query)}&sort=stars&order=desc`
 
   const response = await fetch(url)
