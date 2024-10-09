@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div v-if="repositories.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div
       v-for="language in Object.keys(groupedRepositories)"
       :key="language"
@@ -15,17 +15,24 @@
       </div>
     </div>
   </div>
+  <div v-else class="bg-white w-100 md:h-100 p-4 rounded-lg shadow text-center text-gray-500">
+    {{ githubStore.error ? githubStore.error : ' No repositories found, try changing the filters' }}
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import RepositoryCard from './RepositoryCard.vue'
 import type { Repository } from '../types'
+import { useGithubStore } from '../stores/githubRepoStore'
 
 const props = defineProps<{
   repositories: Repository[]
 }>()
 
+const githubStore = useGithubStore()
+
+console.log('groupedRepositories', props.repositories)
 const groupedRepositories = computed(() => {
   return props.repositories.reduce((acc: Record<string, Repository[]>, repo) => {
     if (!acc[repo.language]) {

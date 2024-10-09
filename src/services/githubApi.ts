@@ -15,7 +15,7 @@ export async function searchRepositories(filters: SearchFilters): Promise<Github
 
   const response = await fetch(url)
   if (!response.ok) {
-    throw new Error('Failed to fetch repositories')
+    throw new Error('Something happened to the request, please try again')
   }
   return response.json()
 }

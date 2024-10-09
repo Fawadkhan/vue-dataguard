@@ -72,8 +72,8 @@ const languages: string[] = ['JavaScript', 'TypeScript', 'Python', 'Java', 'C', 
 const searchTerm = ref('')
 const selectedLanguages = ref<string[]>([])
 const startDate = ref('')
-const endDate = ref('')
-const minStars = ref(100)
+const endDate = ref()
+const minStars = ref(50)
 const showDropdown = ref(false)
 
 const filteredLanguages = computed(() => {
