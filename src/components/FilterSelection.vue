@@ -1,21 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import LanguageChip from './LanguageChip.vue'
-import { useGithubStore } from '@/stores/github'
+import LanguageChip from '@/components/LabelChip.vue'
+import { useDropdownFilters } from '@/composables/useDropdownFilter'
 
-const store = useGithubStore()
-const showDropdown = ref(false)
-
-const closeDropdown = () => {
-  showDropdown.value = false
-}
+const { store, showDropdown, closeDropdown } = useDropdownFilters()
 </script>
 
 <template>
   <div class="bg-gray-50 p-4 50vh rounded-lg shadow-md">
     <h2 class="text-xl font-semibold mb-4">Filters</h2>
     <div class="mb-4 relative">
-      <LanguageChip :selectedLanguages="store.selectedLanguages" @remove="store.removeLanguage" />
+      <LanguageChip :labels="store.selectedLanguages" @remove="store.removeLanguage" />
       <input
         v-model="store.searchTerm"
         @focus="showDropdown = true"
@@ -57,7 +51,7 @@ const closeDropdown = () => {
       />
     </div>
     <div class="mb-4">
-      <label class="block mb-2">Filter stars</label>
+      <label class="block mb-2">Minimum number of stars</label>
       <input
         v-model.number="store.minStars"
         type="number"

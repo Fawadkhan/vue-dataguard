@@ -1,18 +1,45 @@
-# vue-dataguard
+# vue-dataguard Technical documentation
 
-This template should help get you started developing with Vue 3 in Vite.
+### Project structure
 
-## Recommended IDE Setup
+src/
+├── assets/
+├── components/
+│ ├── FilterSection.vue
+│ ├── LabelChip.vue
+│ ├── RepositoryCard.vue
+│ └── RepositoryList.vue
+├── composables/
+│ ├── useDropdownFilter.ts
+├── useGroupedRepos.ts
+├── services/
+│ └── githubApi.ts
+├── stores/
+│ └── github/
+│ ├── index.ts
+│ ├── state.ts
+│ ├── getters.ts
+│ ├── actions.ts
+│ └── constants.ts
+├── types/
+│ └── index.ts
+├── views/
+│ ├── HomePage.vue
+│ └── GithubRepositories.vue
+├── App.vue
+└── main.ts
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+I prefer flat component style compared to separate folders but this definitly depends on the project size.
+If It's a bigger project I would consider using separate folders for each component and keep the tests separate as well.
+In my case I didn't have to do that because the project is small enough.
 
-## Type Support for `.vue` Imports in TS
+### Technology Stack I used
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Vue 3: Frontend framework
+- TypeScript: For type-safe code
+- Pinia: State management
+- Tailwind CSS: Utility-first CSS framework for styling
+- Vite: Build tool and development server
 
 ## Project Setup
 
@@ -44,18 +71,63 @@ npm run test:unit
 npm run test:e2e:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
+This runs the end-to-end tests against the Vite development server but I'm not using them at the moment.
 
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
+
+## IMPORTANT!! Potential changes in future
+
+1. I would consider moving the components to a separate folder and grouping them by feature e.g UI components (shared) like buttons, inputs etc
+2. I would also consider adding more tests to the project
+3. The folder structure is small enough to be handled by just prop drilling but I decided to go with `pinia` for state management because I wanted to try Pinia and to try something new. It much easier to use I believe
+4. I used `views` mainly to just display the data and not much logic in the views.
+
+## Composables?
+
+### useDropdownFilters
+
+- File: useDropdownFilter.ts
+- This composable manages the state for the dropdown filter in the Filter component.
+  Why is it composable? Because it:
+- Manages the visibility state of the dropdown
+- Provides a method to close the dropdown
+- Can be reused in other components
+
+### useGroupedRepos
+
+- File: useGroupedRepos.ts
+- This composable fetches the repositories from the GitHub API and groups them by the language.
+  Why is it composable? Because it:
+- Groups the fetched repositories by language
+- Can be reused in other components
+
+## Containers?
+
+- I didn't use containers in the project and it's not a big project but I would generally
+
+## Tailwind
+
+- Tailwind is easy to setup. I didn't have to do much configuration.
+- Its relatively easy to use and I like the utility-first approach.
+
+## Services Folder
+
+- I would have used http folder to handle the API calls but I decided to use services folder to handle the API calls. I would consider changing this in the future if I were to use axios or any other library.
+  But for now services folder is fine I believe.
+
+## Stores Folder
+
+- I separated the state, getters, actions and constants in the stores folder. It's also find to keep it in the same folder but I like the separation.
+
+## Logic For filtering & grouping
+
+1. User selects a language from the dropdown
+2. The repositories are filtered by the selected language
+3. User clicks on "search button" to fetch the repositories in `FilterSelection` component
+4. The repositories are grouped by the language and rendered in `RepositoryList` component
+5. The grouped repositories are displayed in the RepositoryList component
+6. The user can click on the language chip to remove the filter
