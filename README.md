@@ -122,3 +122,12 @@ npm run lint
 ## Stores Folder
 
 - I separated the state, getters, actions and constants in the stores folder. It's also find to keep it in the same folder but I like the separation.
+
+## Logic For filtering & grouping
+
+1. User selects a language from the dropdown
+2. The repositories are filtered by the selected language
+3. User clicks on "search button" to fetch the repositories in `FilterSelection` component
+4. The repositories are grouped by the language and rendered in `RepositoryList` component
+5. The grouped repositories are displayed in the RepositoryList component
+6. The user can click on the language chip to remove the filter
