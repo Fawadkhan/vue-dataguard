@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useGithubStore } from '@/stores/github'
-
-const githubStore = useGithubStore()
-
-onMounted(() => {
-  githubStore.$reset()
-})
 </script>
 
 <template>
