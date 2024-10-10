@@ -24,7 +24,7 @@ const groupedRepositories = computed(() => {
 
   <div
     v-else-if="store.repositories.length > 0"
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    class="bg-gray-50 shadow-md p-4 rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
   >
     <div
       v-for="language in Object.keys(groupedRepositories)"

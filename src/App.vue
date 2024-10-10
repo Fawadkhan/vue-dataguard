@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import HomeView from './views/HomeView.vue'
 import { useGithubStore } from '@/stores/github'
 
 const githubStore = useGithubStore()
@@ -25,6 +24,7 @@ onMounted(() => {
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
 nav {
   padding: 30px;
 }

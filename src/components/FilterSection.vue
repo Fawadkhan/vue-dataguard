@@ -12,7 +12,7 @@ const closeDropdown = () => {
 </script>
 
 <template>
-  <div class="bg-gray-100 p-4 rounded-lg">
+  <div class="bg-gray-50 p-4 50vh rounded-lg shadow-md">
     <h2 class="text-xl font-semibold mb-4">Filters</h2>
     <div class="mb-4 relative">
       <LanguageChip :selectedLanguages="store.selectedLanguages" @remove="store.removeLanguage" />
