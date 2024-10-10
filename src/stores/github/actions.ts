@@ -38,7 +38,7 @@ export const actions: Actions & ThisType<Actions & GithubState> = {
   },
 
   removeLanguage(lang: string) {
-    this.selectedLanguages = this.selectedLanguages.filter((l) => l !== lang)
+    this.selectedLanguages = this.selectedLanguages.filter((languages) => languages !== lang)
   },
 
   setDateRange(start: string, end: string) {

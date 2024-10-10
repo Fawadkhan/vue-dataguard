@@ -33,13 +33,6 @@ const { store, groupedRepositories } = useGroupedRepositoryList()
   </div>
 
   <div v-else class="bg-white w-100 p-4 rounded-lg shadow text-center">
-    <img
-      src="@/assets/no-results.jpg"
-      height="400"
-      width="400"
-      alt="No repositories found"
-      class="mx-auto mt-4"
-    />
     <span class="text-orange-600">
       {{ store.error || 'No repositories found, try changing the filters' }}
     </span>

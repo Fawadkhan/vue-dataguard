@@ -59,3 +59,40 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+
+### Project structure
+
+src/
+├── assets/
+├── components/
+│ ├── FilterSection.vue
+│ ├── LabelChip.vue
+│ ├── RepositoryCard.vue
+│ └── RepositoryList.vue
+├── composables/
+│ ├── useDropdownFilter.ts
+├── useGroupedRepos.ts
+├── services/
+│ └── githubApi.ts
+├── stores/
+│ └── github/
+│ ├── index.ts
+│ ├── state.ts
+│ ├── getters.ts
+│ ├── actions.ts
+│ └── constants.ts
+├── types/
+│ └── index.ts
+├── views/
+│ ├── HomePage.vue
+│ └── GithubRepositories.vue
+├── App.vue
+└── main.ts
+
+### Technology Stack
+
+- Vue 3: Frontend framework
+- TypeScript: For type-safe code
+- Pinia: State management
+- Tailwind CSS: Utility-first CSS framework for styling
+- Vite: Build tool and development server
