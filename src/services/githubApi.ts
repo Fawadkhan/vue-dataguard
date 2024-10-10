@@ -10,14 +10,19 @@ interface GithubApiResponse {
 
 export async function searchRepositories(filters: SearchFilters): Promise<GithubApiResponse> {
   const { languages, startDate, endDate, minStars } = filters
-  console.log('filters', startDate)
-  const dateFilter = startDate && endDate && `created:${startDate}..${endDate}`
-  const query = `${languages.join(' OR ')}${dateFilter}stars:>=${minStars}`
+
+  const languageQuery = languages.length > 0 ? languages.join(' OR ') : ''
+  const dateFilter = startDate && endDate ? `created:${startDate}..${endDate}` : ''
+  const starsFilter = minStars > 0 ? `stars:>=${minStars}` : ''
+  const query = [languageQuery, dateFilter, starsFilter].filter(Boolean).join(' ')
+
   const url = `${BASE_URL}?q=${encodeURIComponent(query)}&sort=stars&order=desc`
 
   const response = await fetch(url)
+
   if (!response.ok) {
-    throw new Error('Something happened to the request, please try again')
+    throw new Error('Failed to fetch repositories, try again')
   }
+
   return response.json()
 }

@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import FilterSection from '@/components/FilterSection.vue'
+import RepositoryList from '@/components/RepositoryList.vue'
+import { useGithubStore } from '@/stores/githubRepoStore'
+import type { Repository, SearchFilters } from '@/types'
+
+const githubStore = useGithubStore()
+const repositories = ref<Repository[]>([])
+
+const performSearch = async (filters: SearchFilters) => {
+  repositories.value = await githubStore.searchRepositories(filters)
+}
+</script>
+
 <template>
   <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">GitHub Repository Search</h1>
@@ -7,21 +22,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import FilterSection from './components/FilterSection.vue'
-import RepositoryList from './components/RepositoryList.vue'
-import { useGithubStore } from './stores/githubRepoStore'
-import type { Repository, SearchFilters } from './types'
-
-const githubStore = useGithubStore()
-const repositories = ref<Repository[]>([])
-
-const performSearch = async (filters: SearchFilters) => {
-  repositories.value = await githubStore.searchRepositories(filters)
-}
-</script>
 
 <style>
 @import 'tailwindcss/base';
