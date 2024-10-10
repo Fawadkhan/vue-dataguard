@@ -15,3 +15,14 @@ export interface SearchFilters {
   endDate: string
   minStars: number
 }
+
+export interface GithubState {
+  repositories: Repository[]
+  loading: boolean
+  error: string | null
+  selectedLanguages: string[]
+  startDate: string
+  endDate: string
+  minStars: number
+  searchTerm: string
+}

@@ -9,20 +9,25 @@ interface GithubApiResponse {
 }
 
 export async function searchRepositories(filters: SearchFilters): Promise<GithubApiResponse> {
+  const query = constructFilterQuery(filters)
+
+  const searchRepositoryUrl = `${BASE_URL}?q=${encodeURIComponent(query)}&sort=stars&order=desc`
+
+  const response = await fetch(searchRepositoryUrl)
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || 'Failed to fetch repositories')
+  }
+  return response.json()
+}
+
+function constructFilterQuery(filters: SearchFilters): string {
   const { languages, startDate, endDate, minStars } = filters
 
-  const languageQuery = languages.length > 0 ? languages.join(' OR ') : ''
+  const languageQuery = languages.map((lang) => `language:${lang}`).join(' ')
   const dateFilter = startDate && endDate ? `created:${startDate}..${endDate}` : ''
   const starsFilter = minStars > 0 ? `stars:>=${minStars}` : ''
-  const query = [languageQuery, dateFilter, starsFilter].filter(Boolean).join(' ')
 
-  const url = `${BASE_URL}?q=${encodeURIComponent(query)}&sort=stars&order=desc`
-
-  const response = await fetch(url)
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch repositories, try again')
-  }
-
-  return response.json()
+  const queryParts = [languageQuery, dateFilter, starsFilter].filter(Boolean)
+  return queryParts.join(' ')
 }

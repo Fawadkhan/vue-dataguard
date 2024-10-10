@@ -8,6 +8,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/repositories',
+      name: 'repositories',
+      component: () => import('@/views/GithubRepositories.vue')
     }
   ]
 })
