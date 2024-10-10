@@ -2,6 +2,7 @@
 
 ### Project structure
 
+```plaintext
 src/
 ├── assets/
 ├── components/
@@ -28,6 +29,7 @@ src/
 │ └── GithubRepositories.vue
 ├── App.vue
 └── main.ts
+```
 
 I prefer flat component style compared to separate folders but this definitly depends on the project size.
 If It's a bigger project I would consider using separate folders for each component and keep the tests separate as well.
