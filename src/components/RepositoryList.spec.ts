@@ -4,7 +4,6 @@ import RepositoryList from './RepositoryList.vue'
 import RepositoryCard from '@/components/RepositoryCard.vue'
 import { useGroupedRepositoryList } from '@/composables/useGroupedRepos'
 import type { Repository } from '@/types'
-import type { ComputedRef } from 'vue'
 
 vi.mock('@/composables/useGroupedRepos')
 

@@ -1,18 +1,4 @@
-# vue-dataguard
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+# vue-dataguard Technical documentation
 
 ## Project Setup
 
@@ -44,15 +30,7 @@ npm run test:unit
 npm run test:e2e:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
+This runs the end-to-end tests against the Vite development server but I'm not using them at the moment.
 
 ### Lint with [ESLint](https://eslint.org/)
 
@@ -89,10 +67,46 @@ src/
 ├── App.vue
 └── main.ts
 
-### Technology Stack
+### Technology Stack I used
 
 - Vue 3: Frontend framework
 - TypeScript: For type-safe code
 - Pinia: State management
 - Tailwind CSS: Utility-first CSS framework for styling
 - Vite: Build tool and development server
+
+## Composables?
+
+### useDropdownFilters
+
+- File: useDropdownFilter.ts
+- This composable manages the state for the dropdown filter in the Filter component.
+  Why is it composable? Because it:
+- Manages the visibility state of the dropdown
+- Provides a method to close the dropdown
+- Can be reused in other components
+
+### useGroupedRepos
+
+- File: useGroupedRepos.ts
+- This composable fetches the repositories from the GitHub API and groups them by the language.
+  Why is it composable? Because it:
+- Groups the fetched repositories by language
+- Can be reused in other components
+
+## IMPORTANT!! Potential changes in future
+
+1. I would consider moving the components to a separate folder and grouping them by feature e.g UI components (shared) like buttons, inputs etc
+2. I would also consider adding more tests to the project
+3. The folder structure is small enough to be handled by just prop drilling but I decided to go with `pinia` for state management because I wanted to try it. I used vuex before but
+   I wanted to try something new. It much easier to use peronsally.
+4. I used `view` mainly to just display the data and not much logic in the views. I would consider adding more logic to the views in the future.
+
+### Containers?
+
+- I didn't use containers in the project and it's not a big project but I would generally
+
+### Tailwind
+
+- Tailwind is easy to setup. I didn't have to do much configuration.
+- Its relatively easy to use and I like the utility-first approach.
