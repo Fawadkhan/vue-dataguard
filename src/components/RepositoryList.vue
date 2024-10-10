@@ -1,20 +1,9 @@
+<!-- src/components/RepositoryList.vue -->
 <script setup lang="ts">
-import { computed } from 'vue'
 import RepositoryCard from '@/components/RepositoryCard.vue'
-import { useGithubStore } from '@/stores/github'
-import type { Repository } from '@/types'
+import { useGroupedRepositoryList } from '@/composables/useGroupedRepos'
 
-const store = useGithubStore()
-
-const groupedRepositories = computed(() => {
-  return store.repositories.reduce((acc: Record<string, Repository[]>, repo: Repository) => {
-    if (!acc[repo.language]) {
-      acc[repo.language] = []
-    }
-    acc[repo.language].push(repo)
-    return acc
-  }, {})
-})
+const { store, groupedRepositories } = useGroupedRepositoryList()
 </script>
 
 <template>

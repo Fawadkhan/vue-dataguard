@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import FilterSection from '@/containers/FilterSection.vue'
-import RepositoryList from '@/containers/RepositoryList.vue'
+import FilterSection from '@/components/FilterSelection.vue'
+import RepositoryList from '@/components/RepositoryList.vue'
 </script>
 
 <template>

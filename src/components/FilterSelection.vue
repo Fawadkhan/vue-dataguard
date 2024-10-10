@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import LanguageChip from '@/components/LabelChip.vue'
-import { useGithubStore } from '@/stores/github'
+import { useDropdownFilters } from '@/composables/useDropdownFilter'
 
-const store = useGithubStore()
-const showDropdown = ref(false)
-
-const closeDropdown = () => {
-  showDropdown.value = false
-}
+const { store, showDropdown, closeDropdown } = useDropdownFilters()
 </script>
 
 <template>

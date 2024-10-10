@@ -13,7 +13,7 @@ onMounted(() => {
 <template>
   <div id="app">
     <nav>
-      <RouterLink to="/">Home</RouterLink> |
+      <RouterLink to="/">Home</RouterLink>|
       <RouterLink to="/repositories">Repositories</RouterLink>
     </nav>
     <RouterView />
