@@ -133,3 +133,10 @@ npm run lint
 4. The repositories are grouped by the language and rendered in `RepositoryList` component
 5. The grouped repositories are displayed in the RepositoryList component
 6. The user can click on the language chip to remove the filter
+
+
+## Vitest? JEST?
+- In this case I used Vitest since it was provided by Vue out of the box. 
+- It had a learning cure but still it wasn't that much of a big deal, very similar to Jest, just different syntax. 
+- I prefer Jest because im comfortable with it Vitest has great watching feature. It will look for updates
+Hence I used vitest 
