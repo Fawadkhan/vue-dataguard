@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import RepositoryCard from './RepositoryCard.vue'
+import RepositoryCard from '@/components/RepositoryCard.vue'
 import { useGithubStore } from '@/stores/github'
 import type { Repository } from '@/types'
 
@@ -21,7 +21,6 @@ const groupedRepositories = computed(() => {
   <div v-if="store.loading" class="text-center p-4">
     <p class="text-lg">Loading repositories...</p>
   </div>
-
   <div
     v-else-if="store.repositories.length > 0"
     class="bg-gray-50 shadow-md p-4 rounded-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"

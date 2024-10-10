@@ -1,12 +1,12 @@
 <template>
   <div class="mb-4 flex flex-wrap gap-2">
     <span
-      v-for="lang in selectedLanguages"
-      :key="lang"
+      v-for="item in labels"
+      :key="item"
       class="bg-blue-100 text-blue-800 px-2 py-1 rounded flex items-center"
     >
-      {{ lang }}
-      <button @click="removeLanguage(lang)" class="ml-1 text-blue-600 hover:text-blue-800">
+      {{ item }}
+      <button @click="removeLabelChip(item)" class="ml-1 text-blue-600 hover:text-blue-800">
         &times;
       </button>
     </span>
@@ -15,14 +15,14 @@
 
 <script setup lang="ts">
 defineProps<{
-  selectedLanguages: string[]
+  labels: string[]
 }>()
 
 const emit = defineEmits<{
-  (e: 'remove', lang: string): void
+  (e: 'remove', item: string): void
 }>()
 
-const removeLanguage = (lang: string) => {
-  emit('remove', lang)
+const removeLabelChip = (item: string) => {
+  emit('remove', item)
 }
 </script>
